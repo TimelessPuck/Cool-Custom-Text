@@ -6,7 +6,7 @@ A small project that shows a cool way to use SpriteFont in MonoGame.
 
 ---
 
-## Syntax
+## Syntax and Application
 
 To apply an effect to a specific part of the text, we use XML-like tag called 'fx'.  
 In the visual exemple above the input text looks like this :  
@@ -18,6 +18,40 @@ As you can see, one fx tag contains 4 numbers that define a profile for the effe
 <fx Color Palette, Wave, Shake, Hang>  
 Effects can be combine or can be ignored with 0.  
 Custom texts support newlines and consecutives spaces.
+
+Here, how to create a custom text:  
+```csharp
+string text = "This my <fx 2,0,0,1>cool custom text</fx> !";
+Vector2 textDim = new(284f, 60f);
+Vector2 position = new(50f, 50f);
+
+_customText = new CustomText(this, "PixellariFont", text, position, textDim) // 'this' is Game1
+{
+    Scale = new(4f), // Scale the dimension. This is useful if you're working with scaled UI and want to have a coherent dimension.
+    Color = new(255, 244, 196),
+    Padding = new(20f, 0f),
+    ShadowColor = new(128, 85, 111), // Color.Transparent to disable it.
+};
+_customText.Refresh(); // Don't forget to refresh the text after the initialization and after you change the text properties.
+```
+
+Don't forget to update and draw your custom text:
+```
+protected override void Update(GameTime gameTime)
+{
+    ...
+    float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+    _customText.Update(deltaTime);
+    ...    
+}
+
+protected override void Draw(GameTime gameTime)
+{
+    ...
+    _customText.Draw();
+    ...
+}
+```
 
 ---
 

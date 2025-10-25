@@ -44,7 +44,7 @@ namespace CoolCustomText
                 Scale = new(4f), // Scale the dimension. This is useful if you're working with scaled UI and want to have a coherent dimension.
                 Color = new(255, 244, 196),
                 Padding = new(20f, 0f),
-                ShadowColor = new(128, 85, 111),
+                ShadowColor = new(128, 85, 111), // Color.Transparent to disable it.
             };
             _customText.Refresh(); // Don't forget to refresh the text after the initialization and after you change the text properties.
 
