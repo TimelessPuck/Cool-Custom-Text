@@ -82,7 +82,6 @@ public class CustomText
 
             if (c == '\n')
             {
-                // Set the X offset to match the start of a line.
                 nextCharPos = new(Position.X + Padding.X, nextCharPos.Y + _lineHeight);
 
                 lineLength = 0;
@@ -161,7 +160,7 @@ public class CustomText
 
         _fxTexts = new FxText[matches.Count];
 
-        // Extract all fx texts.
+        // Process all extracted fx texts.
         for (int i = 0; i < matches.Count; i++)
         {
             Match m = matches[i];
@@ -185,7 +184,7 @@ public class CustomText
             ignoredCharCount += m.Length - innerText.Length;
         }
 
-        // Return the text without fx balises.
+        // Return the text without fx tags.
         regex = new(@"<fx\b[^>]*>(.*?)</fx>", RegexOptions.Singleline);
         return regex.Replace(text, m => m.Groups[1].Value);
     }
@@ -202,6 +201,7 @@ public class CustomText
                 if (pos >= fxText.StartIdx && pos <= fxText.EndIdx)
                     fxText.Length++;
 
+                // A char was added before the start of the fx text: we increase the start index.
                 else if (pos < fxText.StartIdx)
                     fxText.StartIdx++;
             }
@@ -239,6 +239,7 @@ public class CustomText
 
     private void DrawString(string text, Vector2 position, Color color, float rotation = 0f, Vector2 origin = default, Color? shadowColor = null)
     {
+        // Draw text shadow.
         if (ShadowColor != Color.Transparent)
             _spriteBatch.DrawString(Font, text, position + ShadowOffset, shadowColor ?? ShadowColor, rotation, origin, 1f, SpriteEffects.None, 0f);
 
@@ -296,7 +297,7 @@ public class CustomText
         string[] rawWords = cleanedText.Split(' ');
         StringBuilder line = new();
         StringBuilder output = new();
-        List<int> addedChars = [];
+        List<int> addedChars = []; // Useful to adjust the indexes of fx texts set just before.
         List<int> longWordsPartsPos = [];
         List<string> words = [];
 
@@ -312,7 +313,7 @@ public class CustomText
                 {
                     string part = longWordsParts[i];
 
-                    // Don't add the first part of the long word.
+                    // Don't add the pos of the first part of the long word.
                     if (i != 0) longWordsPartsPos.Add(words.Count);
 
                     words.Add(part);
@@ -340,6 +341,7 @@ public class CustomText
 
                 line.Clear();
 
+                // A word can be empty if it's from consecutives spaces, in this case we add a space to the output.
                 if (words[i] == string.Empty)
                 {
                     line.Append(' ');
@@ -349,6 +351,7 @@ public class CustomText
             }
             else
             {
+                // Add a space between words unless the current word start the line.
                 if (line.Length > 0) line.Append(' ');
 
                 line.Append(words[i]);
