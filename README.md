@@ -6,6 +6,12 @@ A small project that shows a cool way to use SpriteFont in MonoGame.
 
 ---
 
+## Important
+
+To run the project, make sure to install the `.tff` font in `Content` folder. 
+
+---
+
 ## Syntax and Application
 
 To apply an effect to a specific part of the text, we use XML-like tag called 'fx'.  
