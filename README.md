@@ -8,7 +8,9 @@ A small project that shows a cool way to use SpriteFont in MonoGame.
 
 ## Important
 
-To run the project, make sure to install the `.tff` font in `Content` folder. 
+To run the project, make sure to install the `.tff` font in `Content` folder.  
+
+_This font was made by Zacchary Dempsey-Plante: https://www.dafont.com/fr/pixellari.font._
 
 ---
 
