@@ -39,12 +39,13 @@ _customText = new CustomText(this, "PixellariFont", text, position, textDim) // 
     Color = new(255, 244, 196),
     Padding = new(20f, 0f),
     ShadowColor = new(128, 85, 111), // Color.Transparent to disable it.
+    // ShadowOffset can be changed too.
 };
 _customText.Refresh(); // Don't forget to refresh the text after the initialization and after you change the text properties.
 ```
 
 Don't forget to update and draw your custom text:
-```
+```csharp
 protected override void Update(GameTime gameTime)
 {
     ...
