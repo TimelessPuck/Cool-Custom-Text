@@ -46,7 +46,9 @@ public class CustomText
     /// <summary>
     /// The scale of the dimension, the font size and the padding aren't affected.
     /// </summary>
-    /// <remarks> To change the font size, you need to edit your spritefont file.</remarks>
+    /// <remarks>
+    /// To change the font size, you need to edit your spritefont file.
+    /// </remarks>
     public Vector2 Scale { get; set; }
 
 
@@ -185,8 +187,7 @@ public class CustomText
         }
 
         // Return the text without fx tags.
-        regex = new(@"<fx\b[^>]*>(.*?)</fx>", RegexOptions.Singleline);
-        return regex.Replace(text, m => m.Groups[1].Value);
+        return regex.Replace(text, m => m.Groups[2].Value);
     }
 
     private void AdjustFxTextsIndexes(List<int> addedChars)
