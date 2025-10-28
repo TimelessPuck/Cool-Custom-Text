@@ -31,7 +31,7 @@ As you can see, one fx tag contains 4 numbers that define a profile for the effe
 Effects can be combine or can be ignored with 0.  
 Custom texts support newlines and consecutives spaces.
 
-Here, how to create and manange a custom text:  
+Here, how to create and manage a custom text:  
 ```csharp
 string text = "This my <fx 2,0,0,1>cool custom text</fx> !";
 Vector2 textDim = new(284f, 60f);
