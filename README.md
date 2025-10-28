@@ -4,8 +4,9 @@
 
 A small project that shows a cool way to use SpriteFont in MonoGame.  
 Features: 
-* Render text inside a fully customizable box (dimension, padding and scale)
+* Render text inside a fully customizable box (dimension scaling and padding)
 * Apply special FX tags to style or animate parts of your text
+* Customizable text shadow (color and offset)
 * Handle text overflow seamlessly, with support for line-by-line or page-by-page display modes
 
 ---
