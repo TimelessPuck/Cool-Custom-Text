@@ -2,7 +2,11 @@
 
 ![Visual example](Docs/CoolAnimatedText.gif "Visual exemple")
 
-A small project that shows a cool way to use SpriteFont in MonoGame.
+A small project that shows a cool way to use SpriteFont in MonoGame.  
+Features: 
+* Render text inside a fully customizable box (dimension, padding and scale)
+* Apply special FX tags to style or animate parts of your text
+* Handle text overflow seamlessly, with support for line-by-line or page-by-page display modes
 
 ---
 
@@ -19,7 +23,7 @@ _This font was made by Zacchary Dempsey-Plante: https://www.dafont.com/fr/pixell
 To apply an effect to a specific part of the text, we use XML-like tag called 'fx'.  
 In the visual exemple above the input text looks like this :  
 ```csharp
-string text = "Hello stranger, are you <fx 2,0,0,1>good</fx> ?\n<fx 1,1,0,0>いいいいいいいいいいいいいい</fx><fx 6,0,1,0>This line is scared</fx> <fx 6,1,0,0>></fx><fx 7,0,0,0>0123456789</fx><fx 6,1,0,0><</fx>";
+string text = "Hello stranger, are you <fx 2,0,0,1>good</fx> ?\n<fx 1,1,0,0>*************************************</fx><fx 6,0,1,0>This line is scared</fx> <fx 6,1,0,0>></fx><fx 7,0,0,0>0123456789</fx><fx 6,1,0,0><</fx>";
 ```
 
 As you can see, one fx tag contains 4 numbers that define a profile for the effect:  
@@ -27,7 +31,7 @@ As you can see, one fx tag contains 4 numbers that define a profile for the effe
 Effects can be combine or can be ignored with 0.  
 Custom texts support newlines and consecutives spaces.
 
-Here, how to create a custom text:  
+Here, how to create and manange a custom text:  
 ```csharp
 string text = "This my <fx 2,0,0,1>cool custom text</fx> !";
 Vector2 textDim = new(284f, 60f);
