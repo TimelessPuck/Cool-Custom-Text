@@ -65,7 +65,7 @@ public class CustomText
     public int LineCount { get; private set; }
 
     /// <summary>
-    /// Index of the first line draw.<br></br>
+    /// Index of the first drawn line.<br></br>
     /// If <see cref="AllowOverflow"/> is disabled, then the value is always 0.
     /// </summary>
     public int StartingLineIdx
@@ -81,7 +81,7 @@ public class CustomText
     public int PageCount => _lineCapacity == 0 ? 0 : LineCount / _lineCapacity;
 
     /// <summary>
-    /// Index of the current page draw.<br></br>
+    /// Index of the current drawn page.<br></br>
     /// If <see cref="AllowOverflow"/> is disabled, then the value is always 0.
     /// </summary>
     public int CurrentPageIdx
@@ -122,7 +122,7 @@ public class CustomText
     {
         StringBuilder line = new();
         StringBuilder output = new();
-        addedChars = []; // Useful to adjust the indexes of fx texts set just before.
+        addedChars = []; // Used to adjust the indexes of fx texts.
 
         for (int i = 0; i < words.Count; i++)
         {
@@ -273,11 +273,11 @@ public class CustomText
         {
             foreach (int pos in addedChars)
             {
-                // A char was added in the inner text so we update the fx text's length.
+                // A char was added in the fx text, so we update the fx text's length.
                 if (pos >= fxText.StartIdx && pos <= fxText.EndIdx)
                     fxText.Length++;
 
-                // A char was added before the start of the fx text: we increase the start index.
+                // A char was added before the start of the fx text, so we increase the start index.
                 else if (pos < fxText.StartIdx)
                     fxText.StartIdx++;
             }
@@ -290,16 +290,19 @@ public class CustomText
 
         _noFxTexts = new string[_fxTexts.Length + 1][];
 
+        // Each no-fx text are separated by an fx text. example: [Hello stranger, are ]{good}[ ?]
         for (int i = 0; i < _fxTexts.Length; i++)
         {
             int length = _fxTexts[i].StartIdx - startIdx;
             string noFxPart = length > 0 ? output.Substring(startIdx, length) : string.Empty;
 
+            // Split into lines.
             _noFxTexts[i] = noFxPart.Split('\n');
 
             startIdx = _fxTexts[i].EndIdx + 1;
         }
 
+        // Don't forget to add the last one. (in the example it's: [ ?])
         _noFxTexts[^1] = output.Substring(startIdx).Split('\n');
     }
 
@@ -452,7 +455,7 @@ public class CustomText
 
         Vector2 nextCharPos = Position + Padding;
 
-        // Each no-fx text follow an fx text.
+        // Each no-fx text are separated by an fx text.
         for (int i = 0; i < _noFxTexts.Length; i++)
         {
             // Draw no-fx lines.
