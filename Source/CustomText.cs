@@ -290,7 +290,7 @@ public class CustomText
 
         _noFxTexts = new string[_fxTexts.Length + 1][];
 
-        // Each no-fx text are separated by an fx text. example: [Hello stranger, are ]{good}[ ?]
+        // All no-fx texts are separated by an fx text. example: [Hello stranger, are you ]{good}[ ?]
         for (int i = 0; i < _fxTexts.Length; i++)
         {
             int length = _fxTexts[i].StartIdx - startIdx;
@@ -455,7 +455,7 @@ public class CustomText
 
         Vector2 nextCharPos = Position + Padding;
 
-        // Each no-fx text are separated by an fx text.
+        // All no-fx texts are separated by an fx text.
         for (int i = 0; i < _noFxTexts.Length; i++)
         {
             // Draw no-fx lines.
