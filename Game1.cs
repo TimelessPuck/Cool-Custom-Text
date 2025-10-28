@@ -7,6 +7,7 @@ using CoolCustomText.Source;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace CoolCustomText
 {
@@ -44,20 +45,34 @@ namespace CoolCustomText
                 Scale = new(4f), // Scale the dimension. This is useful if you're working with scaled UI and want to have a coherent dimension.
                 Color = new(255, 244, 196),
                 Padding = new(20f, 0f),
-                ShadowColor = new(128, 85, 111), // Color.Transparent to disable it.
+                ShadowColor = new(128, 85, 111), // By default it's Color.Transparent which disable it.
             };
-            _customText.Refresh(); // Don't forget to refresh the text after the initialization and after you change the text properties.
+            // Don't forget to refresh the text after the initialization and after you change the text properties. (except related to overflow)
+            _customText.Refresh();
+
+            // When not allowing overflow, use the following methods to draw the overflowing text.
+            // Calling Refresh isn't necessary to apply your changes.
+            _customText.AllowOverflow = false;
+
+            _customText.CurrentPageIdx = 0;
+            _customText.NextPage();
+            _customText.PreviousPage();
+
+            _customText.StartingLineIdx = 0;
+            _customText.NextStartingLine();
+            _customText.PreviousStartingLine();
+
 
             _infoCustomText = new(this, "SmallPixellariFont",
                 "The gray box represents the dimension of the custom text but\nthe input text is rendered into the green box because we have set a padding.\n" +
-                "Also the text overflows on the y axis as can see here." +
-                "\nNewlines works\nperfectly too           (consecutives spaces        too).\n\n" +
+                "Overflow is allowed here, but by default it isn't and you have to called NextPage or NextStartingLine to draw the overflowing text. " +
+                "\nNewlines works\nperfectly too           (consecutives spaces        too).\n" +
                 "Finally to give a <fx 5,1,0,1>special effect</fx> to your text, use the fx tag by setting the profile of the specific effect " +
                 "(ignore effect with zero), the syntax is:\n" +
                 "< fx Color Palette profile,Wave profile,Shake profile,Hang profile>text< /fx>\n" +
                 "<fx 0,1,0,0>  ^</fx> ignore this space                                                 ignore this space <fx 0,1,0,0>^</fx>\n" +
                 "See README.md to know how to create new profiles.",
-                new(40f, 310f), new(1200f, 90f), padding: new(0, 10f));
+                position: new(40f, 310f), dimension: new(1200f, 92f), padding: new(0f, 10f), allowOverflow: true);
             _infoCustomText.Refresh();
 
             base.Initialize();

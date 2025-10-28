@@ -38,10 +38,23 @@ _customText = new CustomText(this, "PixellariFont", text, position, textDim) // 
     Scale = new(4f), // Scale the dimension. This is useful if you're working with scaled UI and want to have a coherent dimension.
     Color = new(255, 244, 196),
     Padding = new(20f, 0f),
-    ShadowColor = new(128, 85, 111), // Color.Transparent to disable it.
+    ShadowColor = new(128, 85, 111), // By default it's Color.Transparent which disable it.
     // ShadowOffset can be changed too.
 };
-_customText.Refresh(); // Don't forget to refresh the text after the initialization and after you change the text properties.
+// Don't forget to refresh the text after the initialization and after you change the text properties. (except related to overflow)
+_customText.Refresh();
+
+// When not allowing overflow, use the following methods to draw the overflowing text.
+// Calling Refresh isn't necessary to apply your changes.
+_customText.AllowOverflow = false;
+
+_customText.CurrentPageIdx = 0;
+_customText.NextPage();
+_customText.PreviousPage();
+
+_customText.StartingLineIdx = 0;
+_customText.NextStartingLine();
+_customText.PreviousStartingLine();
 ```
 
 Don't forget to update and draw your custom text:
