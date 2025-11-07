@@ -36,7 +36,7 @@ namespace CoolCustomText
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Services.AddService(_spriteBatch);
 
-            string text = "Hello stranger, are you <fx 2,0,0,1>good</fx> ?\n<fx 1,1,0,0>*************************************</fx><fx 6,0,1,0>This line is scared</fx> <fx 6,1,0,0>></fx><fx 7,0,0,0>0123456789</fx><fx 6,1,0,0><</fx>";
+            string text = "Hello stranger, are you <fx 2,0,0,1,0>good</fx> <fx 0,1,0,0,0>?</fx>\n<fx 1,1,0,0,0>*************************************</fx><fx 6,0,1,0,0>This line is scared</fx> <fx 6,0,0,0,1>></fx> <fx 7,0,0,0,0>0123456789</fx> <fx 6,0,0,0,2><</fx>";
             Vector2 textDim = new(284f, 60f); // The dimension is multiplied by 4 later.
             Vector2 position = new(50f);
 
@@ -67,10 +67,10 @@ namespace CoolCustomText
                 "The gray box represents the dimension of the custom text but\nthe input text is rendered into the green box because we have set a padding.\n" +
                 "Overflow is allowed here, but by default it isn't and you have to called NextPage or NextStartingLine to draw the overflowing text. " +
                 "\nNewlines works\nperfectly too           (consecutives spaces        too).\n" +
-                "Finally to give a <fx 5,1,0,1>special effect</fx> to your text, use the fx tag by setting the profile of the specific effect " +
+                "Finally to give a <fx 5,1,0,1,0>special effect</fx> to your text, use the fx tag by setting the profile of the specific effect " +
                 "(ignore effect with zero), the syntax is:\n" +
                 "< fx Color Palette profile,Wave profile,Shake profile,Hang profile>text< /fx>\n" +
-                "<fx 0,1,0,0>  ^</fx> ignore this space                                                 ignore this space <fx 0,1,0,0>^</fx>\n" +
+                "<fx 0,1,0,0,0>  ^</fx> ignore this space                                                 ignore this space <fx 0,1,0,0,0>^</fx>\n" +
                 "See README.md to know how to create new profiles.",
                 position: new(40f, 310f), dimension: new(1200f, 92f), padding: new(0f, 10f), allowOverflow: true);
             _infoCustomText.Refresh();
