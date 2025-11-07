@@ -578,7 +578,7 @@ public class CustomText
         /// </summary>
         public static Dictionary<int, Tuple<float, float>> SideStepProfils = new()
         {
-            // Hang Frequency, Hang Amplitude
+            // Side Step Frequency, Side Step Amplitude
             [1] = new(6f, 12f),
             [2] = new(6f, -12f)
         };

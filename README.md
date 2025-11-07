@@ -24,17 +24,17 @@ _This font was made by Zacchary Dempsey-Plante: https://www.dafont.com/fr/pixell
 To apply an effect to a specific part of the text, we use XML-like tag called 'fx'.  
 In the visual exemple above the input text looks like this :  
 ```csharp
-string text = "Hello stranger, are you <fx 2,0,0,1>good</fx> ?\n<fx 1,1,0,0>*************************************</fx><fx 6,0,1,0>This line is scared</fx> <fx 6,1,0,0>></fx><fx 7,0,0,0>0123456789</fx><fx 6,1,0,0><</fx>";
+string text = "Hello stranger, are you <fx 2,0,0,1,0>good</fx> ?\n<fx 1,1,0,0,0>*************************************</fx><fx 6,0,1,0,0>This line is scared</fx> <fx 6,1,0,0,0>></fx><fx 7,0,0,0,0>0123456789</fx><fx 6,1,0,0,0><</fx>";
 ```
 
-As you can see, one fx tag contains 4 numbers that define a profile for the effect:  
-<fx Color Palette, Wave, Shake, Hang>  
+As you can see, one fx tag contains 5 numbers that define a profile for the effect:  
+<fx Color Palette, Wave, Shake, Hang, Side Step>  
 Effects can be combine or can be ignored with 0.  
 Custom texts support newlines and consecutives spaces.
 
 Here, how to create and manage a custom text:  
 ```csharp
-string text = "This my <fx 2,0,0,1>cool custom text</fx> !";
+string text = "This my <fx 2,0,0,1,0>cool custom text</fx> !";
 Vector2 textDim = new(284f, 60f);
 Vector2 position = new(50f, 50f);
 
@@ -121,6 +121,14 @@ public static Dictionary<int, Tuple<float, float>> HangProfils = new()
     // Hang Frequency, Hang Amplitude
     [1] = new(6f, 12f),
     // New profile ! [2] = ....
+};
+
+// Side Step profiles
+public static Dictionary<int, Tuple<float, float>> SideStepProfils = new()
+{
+    // Side Step Frequency, Side Step Amplitude
+    [1] = new(6f, 12f),
+    [2] = new(6f, -12f)
 };
 ```
 
