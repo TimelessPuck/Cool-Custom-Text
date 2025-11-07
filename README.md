@@ -29,6 +29,9 @@ string text = "Hello stranger, are you <fx 2,0,0,1,0>good</fx> ?\n<fx 1,1,0,0,0>
 
 As you can see, one fx tag contains 5 numbers that define a profile for the effect:  
 <fx Color Palette, Wave, Shake, Hang, Side Step>  
+
+![Effects visual example](Docs/Effects.gif "Effects visual exemple")
+
 Effects can be combine or can be ignored with 0.  
 Custom texts support newlines and consecutives spaces.
 
